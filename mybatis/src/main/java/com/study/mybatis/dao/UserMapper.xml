@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p2.dao.UserMapper">
+
+    <select id="getUserList" resultType="p2.pojo.User">
+        select * from mybatis.user;
+    </select>   
+    
+    <select id="getUserLike"  resultType="p2.pojo.User" >
+        select * from mybatis.user where name like #{name }
+    </select>
+
+    <select id="getUserById" parameterType="int" resultType="p2.pojo.User">
+        select * from mybatis.user where id = #{id}
+    </select>
+    <select id="getUserById2" parameterType="map" resultType="p2.pojo.User">
+        select * from mybatis.user where id = #{helloid} and name=#{name}
+    </select>
+    
+    <insert id="addUser" parameterType="p2.pojo.User">
+        insert into mybatis.user(id, name, pwd) value (#{id }, #{name }, #{pwd})
+    </insert>
+
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user(id, name, pwd) value (#{userId }, #{userName }, #{passWord})
+    </insert>
+
+    <update id="updateUser" parameterType="p2.pojo.User">
+        update mybatis.user set name=#{name }, pwd=#{pwd} where id=#{id};
+    </update>
+    
+    <delete id="deleteUser" parameterType="int">
+        delete  from  mybatis.user where id=#{id}
+    </delete>
+
+
+</mapper>
